@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+// import './Checkout.css'
 
 const Checkout = () => {
   const stripe = useStripe();
@@ -104,10 +105,132 @@ const Checkout = () => {
     setLoading(false);
   };
 
+  // return (
+  //   <div className="checkout-wrapper">
+  //     <div className="checkout-container">
+  //       <h2 className="payment-heading">Payment Details</h2>
+
+  //       {/* Add warning for empty cart */}
+  //       {(!cart || cart.length === 0) && (
+  //         <div style={{ color: "red", marginBottom: "20px", textAlign: "center" }}>
+  //           Your cart is empty. Please add items to your cart before checkout.
+  //         </div>
+  //       )}
+
+  //       <form onSubmit={handleSubmit} className="checkout-form">
+  //         <table>
+  //           <tbody>
+  //             <tr>
+  //               <td><label>Name</label></td>
+  //               <td>
+  //                 <input
+  //                   value={customerName}
+  //                   onChange={(e) => setCustomerName(e.target.value)}
+  //                   required
+  //                 />
+  //               </td>
+  //             </tr>
+  //             <tr>
+  //               <td><label>Email</label></td>
+  //               <td>
+  //                 <input
+  //                   type="email"
+  //                   value={customerEmail}
+  //                   onChange={(e) => setCustomerEmail(e.target.value)}
+  //                   required
+  //                 />
+  //               </td>
+  //             </tr>
+  //             <tr>
+  //               <td><label>Address Line 1</label></td>
+  //               <td>
+  //                 <input
+  //                   value={address.line1}
+  //                   onChange={(e) => setAddress({ ...address, line1: e.target.value })}
+  //                   required
+  //                 />
+  //               </td>
+  //             </tr>
+  //             <tr>
+  //               <td><label>City</label></td>
+  //               <td>
+  //                 <input
+  //                   value={address.city}
+  //                   onChange={(e) => setAddress({ ...address, city: e.target.value })}
+  //                   required
+  //                 />
+  //               </td>
+  //             </tr>
+  //             <tr>
+  //               <td><label>Postal Code</label></td>
+  //               <td>
+  //                 <input
+  //                   value={address.postal_code}
+  //                   onChange={(e) => setAddress({ ...address, postal_code: e.target.value })}
+  //                   required
+  //                 />
+  //               </td>
+  //             </tr>
+  //             <tr>
+  //               <td><label>Payment Details</label></td>
+  //               <td>
+  //                 <div className="my-4">
+  //                   <CardElement options={{ hidePostalCode: true }} />
+  //                 </div>
+  //               </td>
+  //             </tr>
+  //           </tbody>
+  //         </table>
+
+  //         <div className="total-price-container">
+  //           <h3>Total: ₹{totalPrice.toFixed(2)}</h3>
+  //         </div>
+
+  //         <button disabled={!stripe || loading || !clientSecret || cart.length === 0}>
+  //           {loading ? "Processing..." : `Pay ₹${totalPrice.toFixed(2)}`}
+  //         </button>
+  //       </form>
+
+  //       {message && (
+  //         <div style={{ 
+  //           marginTop: "15px", 
+  //           padding: "10px", 
+  //           backgroundColor: message.includes("successful") ? "#d4edda" : "#f8d7da",
+  //           color: message.includes("successful") ? "#155724" : "#721c24",
+  //           borderRadius: "4px",
+  //           textAlign: "center"
+  //         }}>
+  //           {message}
+  //         </div>
+  //       )}
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="checkout-wrapper">
-      <div className="checkout-container">
-        <h2 className="payment-heading">Payment Details</h2>
+    <div 
+        className="checkout-wrapper" 
+        style={{
+            display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center", 
+            height: "100vh", 
+            backgroundColor: "#f4f4f4"
+        }}
+    >
+      <div 
+        className="checkout-container" 
+        style={{
+            width: "400px",
+            backgroundColor: "white",
+            padding: "20px",
+            borderRadius: "10px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            textAlign: "center"
+        }}
+      >
+        <h2 className="payment-heading" style={{ marginBottom: "15px", color: "#333" }}>
+          Payment Details
+        </h2>
 
         {/* Add warning for empty cart */}
         {(!cart || cart.length === 0) && (
@@ -117,12 +240,19 @@ const Checkout = () => {
         )}
 
         <form onSubmit={handleSubmit} className="checkout-form">
-          <table>
+          <table style={{ width: "100%" }}>
             <tbody>
               <tr>
                 <td><label>Name</label></td>
                 <td>
                   <input
+                    style={{
+                        width: "100%",
+                        padding: "8px",
+                        margin: "5px 0",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px"
+                    }}
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                     required
@@ -134,6 +264,13 @@ const Checkout = () => {
                 <td>
                   <input
                     type="email"
+                    style={{
+                        width: "100%",
+                        padding: "8px",
+                        margin: "5px 0",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px"
+                    }}
                     value={customerEmail}
                     onChange={(e) => setCustomerEmail(e.target.value)}
                     required
@@ -144,6 +281,13 @@ const Checkout = () => {
                 <td><label>Address Line 1</label></td>
                 <td>
                   <input
+                    style={{
+                        width: "100%",
+                        padding: "8px",
+                        margin: "5px 0",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px"
+                    }}
                     value={address.line1}
                     onChange={(e) => setAddress({ ...address, line1: e.target.value })}
                     required
@@ -154,6 +298,13 @@ const Checkout = () => {
                 <td><label>City</label></td>
                 <td>
                   <input
+                    style={{
+                        width: "100%",
+                        padding: "8px",
+                        margin: "5px 0",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px"
+                    }}
                     value={address.city}
                     onChange={(e) => setAddress({ ...address, city: e.target.value })}
                     required
@@ -164,6 +315,13 @@ const Checkout = () => {
                 <td><label>Postal Code</label></td>
                 <td>
                   <input
+                    style={{
+                        width: "100%",
+                        padding: "8px",
+                        margin: "5px 0",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px"
+                    }}
                     value={address.postal_code}
                     onChange={(e) => setAddress({ ...address, postal_code: e.target.value })}
                     required
@@ -173,7 +331,7 @@ const Checkout = () => {
               <tr>
                 <td><label>Payment Details</label></td>
                 <td>
-                  <div className="my-4">
+                  <div className="my-4" style={{ marginTop: "10px", padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}>
                     <CardElement options={{ hidePostalCode: true }} />
                   </div>
                 </td>
@@ -181,11 +339,24 @@ const Checkout = () => {
             </tbody>
           </table>
 
-          <div className="total-price-container">
-            <h3>Total: ₹{totalPrice.toFixed(2)}</h3>
+          <div className="total-price-container" style={{ marginTop: "15px" }}>
+            <h3 style={{ color: "#333" }}>Total: ₹{totalPrice.toFixed(2)}</h3>
           </div>
 
-          <button disabled={!stripe || loading || !clientSecret || cart.length === 0}>
+          <button 
+            disabled={!stripe || loading || !clientSecret || cart.length === 0}
+            style={{
+                width: "100%",
+                backgroundColor: loading ? "#ccc" : "#28a745",
+                color: "white",
+                padding: "10px",
+                fontSize: "16px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: loading ? "not-allowed" : "pointer",
+                marginTop: "10px"
+            }}
+          >
             {loading ? "Processing..." : `Pay ₹${totalPrice.toFixed(2)}`}
           </button>
         </form>
@@ -204,7 +375,8 @@ const Checkout = () => {
         )}
       </div>
     </div>
-  );
+);
+
 };
 
 export default Checkout;
